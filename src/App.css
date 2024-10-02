@@ -45,6 +45,15 @@ button{
   color: rgb(147, 147, 236)
   
 }
+.customerDetails{
+  background-color: rgb(105, 30, 210);
+  border-style: solid;
+  width: 40%;
+  margin: auto;
+  margin-bottom: 50px;
+  border-radius: 30px;
+  padding-left: 10%;
+}
 .customer{
   border-style: solid;
   border-radius: 40px;
@@ -52,4 +61,15 @@ button{
   border-color: rgb(206, 175, 219);
   background-color: rgb(206, 175, 219);
   
+}
+table{
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+th, td{
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+
 }
