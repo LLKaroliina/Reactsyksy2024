@@ -11,4 +11,10 @@ const addNew = (object) =>
         const request = axios.post(baseUrl,object)
         return request.then(response => response.data)
     }
-export default {getAll, addNew}
+const remove = (id) =>
+        {
+            //const request = axios.delete(`baseUrl/${id}`)
+            const request = axios.delete(baseUrl + "/" + id)
+            return request.then(response => response.data)
+        }
+export default {getAll, addNew, remove}

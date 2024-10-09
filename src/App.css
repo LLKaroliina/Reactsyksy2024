@@ -48,11 +48,12 @@ button{
 .customerDetails{
   background-color: rgb(105, 30, 210);
   border-style: solid;
-  width: 40%;
+  width: 50%;
   margin: auto;
   margin-bottom: 50px;
   border-radius: 30px;
   padding-left: 10%;
+  padding-right: 10%;
 }
 .customer{
   border-style: solid;
@@ -72,4 +73,33 @@ th, td{
   text-align: center;
   vertical-align: middle;
 
+}
+.neg {
+  color: red;
+  background: rgb(13, 0, 0);
+  font-size: 36px;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10%;
+  width: 70%;
+  margin-left: 15%;
+}
+
+.pos {
+  color: rgb(247, 122, 240);
+  background: rgb(73, 226, 243);
+  font-size: 36px;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10%;
+  width: 70%;
+  margin-left: 15%;
 }

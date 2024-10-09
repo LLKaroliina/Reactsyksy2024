@@ -6,7 +6,8 @@ import CustomerAdd from './CustomerAdd'
 
 
 // määritellään dokumentti
-function Customerlist() {
+//MESSAGEN ASETTAMISEEN LIITTYVÄT METODIT ON VÄLITETTY TÄLLÄ KOMPONENTILLE
+function Customerlist({setIsPositive, setMessage, setShowMessage}) {
 
     //USEEFFECT KUTSUTAAN AUTOMAATTISESTI AINA ALUSSA
     //KAKKOSPARAMETRINA ON TYHJÄ TAULUKKO, JOS SINNE LAITTAA STATEJEN NIMIÄ
@@ -22,6 +23,9 @@ function Customerlist() {
 
     const [customers, setCustomers] = useState([])
     const [show, setShow] = useState(false)
+    const [adding, setAdding] = useState(false)
+    //HAKUKENTÄN STATE
+    const [search, setSearch] = useState("")
 
     // function showAlert(cust){
     //     alert("Contact " + cust.contactName + " by calling " + cust.phone)
@@ -31,18 +35,28 @@ function Customerlist() {
 
         <div> 
             <h5><button onClick={() => setShow(!show)}>{show ? "Piilota asiakkaat" : "Näytä asiakkaat"}</button> </h5>
-            <CustomerAdd></CustomerAdd>
-            {show && customers && customers.map(cust => (
-                <Customer key={cust.customerId} customer={cust}></Customer>
-                // <h5 className= 'customer' onClick={() => showAlert(cust)}>
-                //     {cust.companyName} from {cust.city}, {cust.country}
-                // </h5>
-
-            )
-
-            )
-
+            {/* NÄYTTÄÄ CUSTOMERADD BUTTONIN */}
+            {show && adding && <CustomerAdd setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} setAdding={setAdding}></CustomerAdd>}
+            {show && !adding && <button onClick={() => setAdding(true)}>Add New Customer</button>}
+            <br></br>
+            {show && !adding && <input type="text" placeholder='Search by Companyname' value={search} onChange={({target}) => setSearch(target.value)}></input>}
+            {show && customers && customers.map(cust => {
+                
+                    const lowerCaseName = cust.companyName.toLowerCase()
+                    if (lowerCaseName.indexOf(search) > -1) {
+                        return(
+                    <Customer key={cust.customerId} customer={cust} 
+                    setMessage={setMessage} setShowMessage={setShowMessage} setIsPositive={setIsPositive}
+                    />
+                )
             }
+          }
+            )
+        }
+                
+                
+
+            
 
         </div>
 

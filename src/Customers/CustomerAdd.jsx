@@ -1,8 +1,8 @@
 import '../App.css'
 import React, {useState} from 'react'
 import CustomerService from '../Services/Customer'
-
-const CustomerAdd = () => {
+//KOMPONENTTI OTTAA VASTAAN PROPSINA setAdding TILANMUUTOS METODIN, JOLLA ADDING TILA VOIDAAN MUTTAA falseksi, KUN PAINETAAN BACK BUTTON
+const CustomerAdd = ({setAdding, setIsPositive, setMessage, setShowMessage}) => {
 
 // Komponentin tilan määritys
 
@@ -38,15 +38,29 @@ const handleSubmit = (event) => {
     
     CustomerService.addNew(newCustomer)
     .then(response => {
-      if (response.status === 200) {
+      
+        //NÄYTETÄÄN MESSAGE
+        setMessage(response)
+        setIsPositive(true)
+        setShowMessage(true)
+
+        //MESSAGEN PIILOTUS
+        setTimeout(() => setShowMessage(false), 10000)
        //alert("Added new customer: " + newCustomer.companyName)
-       alert(response.data)
-       window.location.reload()
-      }
+       //alert(response)
+       //window.location.reload()
+      
 
       })
     .catch(error => {
-        alert(error.message)
+        //alert(error.message)
+        //NÄYTETÄÄN MESSAGE VIRHETILANTEESSAKIN
+        setMessage(error.message)
+        setIsPositive(false)
+        setShowMessage(true)
+
+        //MESSAGEN PIILOTUS
+        setTimeout(() => setShowMessage(false), 10000)
       })
     }
 
@@ -96,9 +110,11 @@ const handleSubmit = (event) => {
                 <input type="text" value={newFax} placeholder="Fax"
                     onChange={({ target }) => setNewFax(target.value)} />
             </div>
-         
+         <br></br>
          <input type='submit' value='save' />
-         <input type='button' value='back' />
+         {" "}
+         {/* LISÄYSLOMAKE HÄVIÄÄ */}
+         <input type='button' onClick={() => setAdding(false)} value='back' />
        </form>
 
     </div>
