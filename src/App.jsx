@@ -6,6 +6,7 @@ import Customerlist from './Customers/Customerlist'
 import Laskuri from './laskuri'
 import { useState } from 'react'
 import Message from './Message'
+import Productlist from './Products/Productlist'
 
 // määritellään dokumentti
 function App() {
@@ -28,6 +29,8 @@ function App() {
       {showMessage && <Message message={message} isPositive={isPositive}></Message>}
       {/* näin istutetaan toinen komponentti toisen sisälle */}
       <Customerlist setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage}></Customerlist>
+      <br></br>
+      <Productlist></Productlist>
       <br></br>
       {showLaskuri ? <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button> : <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button> }
       {showLaskuri && <Laskuri otsikko="Laskuri" />}
