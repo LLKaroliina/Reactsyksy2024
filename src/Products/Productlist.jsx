@@ -7,7 +7,7 @@ import Product from './Product'
 
 // määritellään dokumentti
 //MESSAGEN ASETTAMISEEN LIITTYVÄT METODIT ON VÄLITETTY TÄLLÄ KOMPONENTILLE
-function Productlist({setIsPositive, setMessage, setShowMessage}) {
+function Productlist() {
 
     //USEEFFECT KUTSUTAAN AUTOMAATTISESTI AINA ALUSSA
     //KAKKOSPARAMETRINA ON TYHJÄ TAULUKKO, JOS SINNE LAITTAA STATEJEN NIMIÄ
@@ -16,13 +16,14 @@ function Productlist({setIsPositive, setMessage, setShowMessage}) {
         fetch("https://localhost:7277/api/products")
             //.then(res => res.json()) //javascript muotoon json muodosta
             ProductService.getAll()
-            .then(data => setProducts(data))//ASETETAAN STATEEN NIMELTÄ CUSTOMERS
+            .then(data => setProducts(data))//ASETETAAN STATEEN NIMELTÄ Products
     }, [])
 
 
 
     const [products, setProducts] = useState([])
     const [showProducts, setShowProducts] = useState(false)
+    
     //const [adding, setAdding] = useState(false)
     //HAKUKENTÄN STATE
     //const [search, setSearch] = useState("")
@@ -35,10 +36,13 @@ function Productlist({setIsPositive, setMessage, setShowMessage}) {
 
         <div> 
             <h5><button onClick={() => setShowProducts(!showProducts)}>{showProducts ? "Piilota tuotteet" : "Näytä tuotteet"}</button> </h5>
-            {
-            showProducts && products && products.map(p => (
-                <Product key={p.productId}>{p.productName}</Product> 
-              )
+            {showProducts && products && products.map(p => {
+                return(
+                <Product key={p.productId} product={p}>
+                
+                </Product> 
+                )
+            }
             )
         }
             {/* {
@@ -46,7 +50,7 @@ function Productlist({setIsPositive, setMessage, setShowMessage}) {
                 (
                     p => 
                     (
-                        <h3 key={p.productId}>{p.productName}</h3>
+                        <h3 key={p.productId}></h3>
                     )
                 )
             } */}

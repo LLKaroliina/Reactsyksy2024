@@ -20,7 +20,10 @@ function App() {
   const [showMessage, setShowMessage] = useState(false)
   //Onko viesti positiivinen vai neg
   const [isPositive, setIsPositive] = useState(false)
-
+  
+  // const [productMessage, setProductMessage] = useState("")
+  // const [showProductMessage, setShowProductMessage] = useState(false)
+  // const [isProductPositive, setIsProductPositive] = useState(false)
 
   return (
 

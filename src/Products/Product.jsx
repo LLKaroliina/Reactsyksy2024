@@ -4,7 +4,7 @@ import ProductService from '../Services/Product'
 // määritellään dokumentti
 //PROPS ON OTETTU VASTAAN SUORAAN NIMELLÄ CUSTOMER SULUISSA
 // TAI const Customer = ({customer}) =>
-function Product({product, setMessage, setIsPositive, setShowMessage}) {
+function Product({product}) {
     
     //STATE
     const [showProductDetails, setShowProductDetails] = useState(false)
@@ -49,7 +49,7 @@ function Product({product, setMessage, setIsPositive, setShowMessage}) {
     return (
         <div> 
                 {showProductDetails && <h2 style={{cursor: 'pointer'}} onClick={() => setShowProductDetails(!showProductDetails)}>{product.productName}</h2>}
-                {/* {!showDetails && <h5 style={{cursor: 'pointer'}} onClick={() => setShowDetails(!showDetails)}>{customer.companyName}</h5>} */}
+                {!showProductDetails && <h5 style={{cursor: 'pointer'}} onClick={() => setShowProductDetails(!showProductDetails)}>{product.productName}</h5>}
                 
                 {showProductDetails && <div className="productsDetails">
                                 <button>Edit</button>
