@@ -1,6 +1,7 @@
 import '../App.css'
 import { useState } from 'react'
 import CustomerService from '../Services/Customer'
+import CustomerEdit from './CustomerEdit'
 // määritellään dokumentti
 //PROPS ON OTETTU VASTAAN SUORAAN NIMELLÄ CUSTOMER SULUISSA
 // TAI const Customer = ({customer}) =>
@@ -8,6 +9,8 @@ function Customer({customer, setMessage, setIsPositive, setShowMessage}) {
     
     //STATE
     const [showDetails, setShowDetails] = useState(false)
+    const [editing, setEditing] = useState(false) //OLETUKSENA EI OLLA MUOKKAAMASSA
+
     //POISTOMETODI
     const deleteCustomer = (cust) =>
         {
@@ -52,9 +55,9 @@ function Customer({customer, setMessage, setIsPositive, setShowMessage}) {
                 {!showDetails && <h5 style={{cursor: 'pointer'}} onClick={() => setShowDetails(!showDetails)}>{customer.companyName}</h5>}
                 
                 {showDetails && <div className="customerDetails">
-                                <button>Edit</button>
+                                <button onClick={() => setEditing(true)}>Edit</button>
                                 <button onClick={() => deleteCustomer(customer)}>Delete</button>
-                                <table>
+                        <table>
                         <thead>
                             <tr>
                                 <th>Contact person</th>
@@ -73,7 +76,10 @@ function Customer({customer, setMessage, setIsPositive, setShowMessage}) {
                                 <td>{customer.country}</td>
                             </tr>
                         </tbody>
-                                </table>
+                        </table>
+                        {editing && <CustomerEdit custToEdit={customer} setEditing={setEditing}
+                        setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage}></CustomerEdit>}
+
 
                 </div>
                 }

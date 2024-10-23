@@ -1,6 +1,6 @@
 import '../App.css'
 import { useState } from 'react'
-import ProductService from '../Services/Product'
+//import ProductService from '../Services/Product'
 // määritellään dokumentti
 //PROPS ON OTETTU VASTAAN SUORAAN NIMELLÄ CUSTOMER SULUISSA
 // TAI const Customer = ({customer}) =>
@@ -51,26 +51,26 @@ function Product({product}) {
                 {showProductDetails && <h2 style={{cursor: 'pointer'}} onClick={() => setShowProductDetails(!showProductDetails)}>{product.productName}</h2>}
                 {!showProductDetails && <h5 style={{cursor: 'pointer'}} onClick={() => setShowProductDetails(!showProductDetails)}>{product.productName}</h5>}
                 
-                {showProductDetails && <div className="productsDetails">
+                {showProductDetails && <div className="productDetails">
                                 <button>Edit</button>
-                                <button onClick={() => deleteCustomer(customer)}>Delete</button>
+                                <button onClick={() => deleteProduct(product)}>Delete</button>
                                 <table>
                         <thead>
                             <tr>
                                 <th>Product Name</th>
                                 <th>UnitPrice</th>
                                 <th>UnitsInStock</th>
-                                <th>QuantityPerunit</th>
+                                <th>QuantityPerUnit</th>
                                 <th>Category</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{product.productName}</td>
-                                <td>{product.unitprice}</td>
-                                <td>{product.unitsinstock}</td>
-                                <td>{product.quantityperunit}</td>
-                                <td>{product.category}</td>
+                                <td>{product.unitPrice}</td>
+                                <td>{product.unitsInStock}</td>
+                                <td>{product.quantityPerUnit}</td>
+                                <td>{product.categoryId}</td>
                             </tr>
                         </tbody>
                                 </table>
