@@ -7,6 +7,7 @@ import Laskuri from './laskuri'
 import { useState } from 'react'
 import Message from './Message'
 import Productlist from './Products/Productlist'
+import Userlist from './Users/Userlist'
 
 //NAVIGOINTI JA BOOTSTRAP IMPORTIT
 import Navbar from 'react-bootstrap/Navbar'
@@ -19,7 +20,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 function App() {
   // const [count, setCount] = useState(0)
   // STATE MÄÄRITTÄÄ NÄYTETÄÄNKÖ LASKURIA
-  const [showLaskuri, setShowLaskuri] = useState(false)
+  //const [showLaskuri, setShowLaskuri] = useState(false)
   //MESSAGEEN LIITTYVÄT STATET
   //viestisisältö, get mitä halutaan tietää, set mitä asetetaan
   const [message, setMessage] = useState("")
@@ -57,7 +58,10 @@ function App() {
           element={<Productlist 
            />}>
           </Route>
-          
+          <Route path="/users"
+          element={<Userlist setMessage={setMessage} setIsPositive={setIsPositive} 
+          setShowMessage={setShowMessage} />}>
+          </Route>
           <Route path="/laskuri" 
           element={<Laskuri otsikko={"Laskuri"} />}>
           </Route>
