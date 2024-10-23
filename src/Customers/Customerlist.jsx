@@ -39,11 +39,11 @@ function Customerlist({setIsPositive, setMessage, setShowMessage}) {
             {show && adding && <CustomerAdd setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} setAdding={setAdding}></CustomerAdd>}
             {show && !adding && <button onClick={() => setAdding(true)}>Add New Customer</button>}
             <br></br>
-            {show && !adding && <input type="text" placeholder='Search by Companyname' value={search} onChange={({target}) => setSearch(target.value)}></input>}
+            {show && !adding && <input id="haku" type="text" placeholder='Search by Companyname' value={search} onChange={({target}) => setSearch(target.value)}></input>}
             {show && customers && customers.map(cust => {
                 
                     const lowerCaseName = cust.companyName.toLowerCase()
-                    if (lowerCaseName.indexOf(search) > -1) {
+                    if (lowerCaseName.indexOf(search.toLowerCase()) > -1) {
                         return(
                     <Customer key={cust.customerId} customer={cust} 
                     setMessage={setMessage} setShowMessage={setShowMessage} setIsPositive={setIsPositive}

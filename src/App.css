@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+#haku{
+  min-width: 700px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  
+
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

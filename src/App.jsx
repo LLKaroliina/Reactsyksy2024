@@ -8,6 +8,13 @@ import { useState } from 'react'
 import Message from './Message'
 import Productlist from './Products/Productlist'
 
+//NAVIGOINTI JA BOOTSTRAP IMPORTIT
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 // määritellään dokumentti
 function App() {
   // const [count, setCount] = useState(0)
@@ -28,17 +35,35 @@ function App() {
   return (
 
     <div>
+      <Router>
+      
+      <Navbar bg="dark" variant="dark">
+        <Nav className="mr-auto">
+            <Nav.Link href='/customers'>Customers</Nav.Link>
+            <Nav.Link href='/products'>Products</Nav.Link>
+            <Nav.Link href='/users'>Users</Nav.Link>
+            <Nav.Link href='/laskuri'>Laskuri</Nav.Link>
+        </Nav>
+      </Navbar>
+
       <marquee><h1>Northwind Corporation</h1></marquee>
       {showMessage && <Message message={message} isPositive={isPositive}></Message>}
-      {/* näin istutetaan toinen komponentti toisen sisälle */}
-      <Customerlist setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage}></Customerlist>
-      <br></br>
-      <Productlist></Productlist>
-      <br></br>
-      {showLaskuri ? <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button> : <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button> }
-      {showLaskuri && <Laskuri otsikko="Laskuri" />}
-      {/* <Laskuri otsikko="Laskuri2"/>
-        <Laskuri otsikko="Laskuri3"/> */}
+      <Routes>
+          <Route path="/customers"
+          element={<Customerlist setMessage={setMessage} setIsPositive={setIsPositive} 
+          setShowMessage={setShowMessage} />}>
+          </Route>
+          <Route path="/products"
+          element={<Productlist 
+           />}>
+          </Route>
+          
+          <Route path="/laskuri" 
+          element={<Laskuri otsikko={"Laskuri"} />}>
+          </Route>
+        
+        </Routes>
+      </Router>
 
     </div>
 
