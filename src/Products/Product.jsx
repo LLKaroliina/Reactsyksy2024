@@ -1,10 +1,10 @@
 import '../App.css'
 import { useState } from 'react'
-//import ProductService from '../Services/Product'
+import ProductService from '../Services/Product'
 // määritellään dokumentti
 //PROPS ON OTETTU VASTAAN SUORAAN NIMELLÄ CUSTOMER SULUISSA
 // TAI const Customer = ({customer}) =>
-function Product({product}) {
+function Product({product, setMessage, setIsPositive, setShowMessage}) {
     
     //STATE
     const [showProductDetails, setShowProductDetails] = useState(false)

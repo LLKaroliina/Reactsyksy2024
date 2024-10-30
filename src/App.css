@@ -56,7 +56,7 @@ button{
 .customerDetails{
   background-color: rgb(105, 30, 210);
   border-style: solid;
-  width: 50%;
+  width: 100%;
   margin: auto;
   margin-bottom: 50px;
   border-radius: 30px;
@@ -68,8 +68,24 @@ button{
   border-radius: 40px;
   border-width: 40px;
   border-color: rgb(206, 175, 219);
+  background-color: rgb(206, 175, 219); 
+}
+.productDetails{
+  background-color: rgb(105, 30, 210);
+  border-style: solid;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 50px;
+  border-radius: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.product{
+  border-style: solid;
+  border-radius: 40px;
+  border-width: 40px;
+  border-color: rgb(206, 175, 219);
   background-color: rgb(206, 175, 219);
-  
 }
 table{
   width: 100%;

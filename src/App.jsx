@@ -14,6 +14,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 // määritellään dokumentti
@@ -55,8 +56,8 @@ function App() {
           setShowMessage={setShowMessage} />}>
           </Route>
           <Route path="/products"
-          element={<Productlist 
-           />}>
+          element={<Productlist setMessage={setMessage} setIsPositive={setIsPositive} 
+          setShowMessage={setShowMessage} />}>
           </Route>
           <Route path="/users"
           element={<Userlist setMessage={setMessage} setIsPositive={setIsPositive} 

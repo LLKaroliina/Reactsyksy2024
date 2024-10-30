@@ -2,6 +2,7 @@ import '../App.css'
 import { useState, useEffect } from 'react'
 import ProductService from '../Services/Product'
 import Product from './Product'
+import ProductAdd from './ProductAdd'
 //import CustomerAdd from './CustomerAdd'
 
 
@@ -23,8 +24,8 @@ function Productlist() {
 
     const [products, setProducts] = useState([])
     const [showProducts, setShowProducts] = useState(false)
-    
-    //const [adding, setAdding] = useState(false)
+    const [adding, setAdding] = useState(false)
+   
     //HAKUKENTÄN STATE
     //const [search, setSearch] = useState("")
 
@@ -36,9 +37,12 @@ function Productlist() {
 
         <div> 
             <h5><button onClick={() => setShowProducts(!showProducts)}>{showProducts ? "Piilota tuotteet" : "Näytä tuotteet"}</button> </h5>
+            {/* NÄYTTÄÄ CUSTOMERADD BUTTONIN */}
+            {showProducts && adding && <ProductAdd setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} setAdding={setAdding} ></ProductAdd>}
+            {showProducts && !adding && <button onClick={() => setAdding(true)}>Add New Product</button>}
             {showProducts && products && products.map(p => {
                 return(
-                <Product key={p.productId} product={p}>
+                <Product key={p.productId} product={p}  >
                 
                 </Product> 
                 )
