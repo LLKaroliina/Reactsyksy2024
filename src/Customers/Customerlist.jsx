@@ -8,7 +8,11 @@ import CustomerAdd from './CustomerAdd'
 // määritellään dokumentti
 //MESSAGEN ASETTAMISEEN LIITTYVÄT METODIT ON VÄLITETTY TÄLLÄ KOMPONENTILLE
 function Customerlist({setIsPositive, setMessage, setShowMessage}) {
-
+    const [customers, setCustomers] = useState([])
+    const [show, setShow] = useState(false)
+    const [adding, setAdding] = useState(false)
+    //HAKUKENTÄN STATE
+    const [search, setSearch] = useState("")
     //USEEFFECT KUTSUTAAN AUTOMAATTISESTI AINA ALUSSA
     //KAKKOSPARAMETRINA ON TYHJÄ TAULUKKO, JOS SINNE LAITTAA STATEJEN NIMIÄ
     // NIIDEN MUUTOS AIHEUTTAA ENSIMMÄISEN PARAMETRIN KOODIN SUORITUKSEN
@@ -17,15 +21,11 @@ function Customerlist({setIsPositive, setMessage, setShowMessage}) {
             //.then(res => res.json()) //javascript muotoon json muodosta
             CustomerService.getAll()
             .then(data => setCustomers(data))//ASETETAAN STATEEN NIMELTÄ CUSTOMERS
-    }, [])
+    }, [adding])
 
 
 
-    const [customers, setCustomers] = useState([])
-    const [show, setShow] = useState(false)
-    const [adding, setAdding] = useState(false)
-    //HAKUKENTÄN STATE
-    const [search, setSearch] = useState("")
+   
 
     // function showAlert(cust){
     //     alert("Contact " + cust.contactName + " by calling " + cust.phone)
