@@ -1,6 +1,13 @@
 // TÄMÄ PALVELU HOITAA HTTP PYYNTÖJEN TEKEMISEN
 import axios from "axios"
 const baseUrl = "https://localhost:7277/api/users"
+const loginUrl = "https://localhost:7277/api/authentication"
+
+const Login = (object) =>
+    {
+        const request = axios.post(loginUrl,object)
+        return request.then(response => response.data)
+    }
 const getAll = () => 
     {
         const request = axios.get(baseUrl) //hakee datan bakendista muuttaa json muodosta js muotoon
@@ -12,15 +19,16 @@ const addNew = (object) =>
         return request.then(response => response.data)
     }
 const remove = (id) =>
-        {
-            //const request = axios.delete(`baseUrl/${id}`)
-            const request = axios.delete(baseUrl + "/" + id)
-            return request.then(response => response.data)
-        }
+    {
+        //const request = axios.delete(`baseUrl/${id}`)
+        const request = axios.delete(baseUrl + "/" + id)
+        return request.then(response => response.data)
+    }
 const edit = (object) =>
     {
         //const request = axios.delete(`baseUrl/${id}`)
         const request = axios.put(baseUrl + "/" + object.userID, object)
         return request.then(response => response.data)
     }
-export default {getAll, addNew, remove, edit}
+
+export default {getAll, addNew, remove, edit, Login} 

@@ -6,7 +6,7 @@ const ProductAdd = ({setAdding, setIsPositive, setMessage, setShowMessage}) => {
 
 // Komponentin tilan määritys
 
-//const [newProductId, setNewCustomerId] = useState('')
+//const [newProductId, setNewProductId] = useState('')
 const [newProductName, setNewProductName] = useState('')
 const [newUnitPrice, setNewUnitPrice] = useState('')
 const [newUnitsInStock, setNewUnitsInStock] = useState('') 
@@ -24,7 +24,7 @@ const [newQuantityPerUnit, setNewQuantityPerUnit] = useState('')
 const handleSubmit = (event) => {
       event.preventDefault()
       var newProduct = {
-        //customerId: newCustomerId.toUpperCase(),
+        //productId: newProductId.toUpperCase(),
         productName: newProductName,
         unitPrice: newUnitPrice,
         unitsInStock: newUnitsInStock,
@@ -71,7 +71,7 @@ const handleSubmit = (event) => {
 
        <form onSubmit={handleSubmit}>
             {/* <div>
-                <input type="text" value={newCustomerId} placeholder="ID with 5 capital letters" maxLength="5" minLength="5"
+                <input type="number" value={newProductId} maxLength="5" minLength="5"
                     onChange={({ target }) => setNewCustomerId(target.value)} required />
             </div> */}
             <div>
@@ -79,15 +79,15 @@ const handleSubmit = (event) => {
                     onChange={({ target }) => setNewProductName(target.value)} required />
             </div>
             <div>
-                <input type="text" value={newUnitPrice} placeholder="Unit Price"
+                <input type="number" value={newUnitPrice} placeholder="Unit Price"
                     onChange={({ target }) => setNewUnitPrice(target.value)} />
             </div>
             <div>
-                <input type="text" value={newUnitsInStock} placeholder="Units in stock"
+                <input type="number" value={newUnitsInStock} placeholder="Units in stock"
                     onChange={({ target }) => setNewUnitsInStock(target.value)} />
             </div>
             <div>
-                <input type="text" value={newQuantityPerUnit} placeholder="Quantity per unit"
+                <input type="number" value={newQuantityPerUnit} placeholder="Quantity per unit"
                     onChange={({ target }) => setNewQuantityPerUnit(target.value)} />
             </div>
             {/* <div>

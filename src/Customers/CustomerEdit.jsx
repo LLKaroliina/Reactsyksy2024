@@ -70,7 +70,7 @@ const handleSubmit = (event) => {
        <h2>Editing Customer</h2>
 
        <form onSubmit={handleSubmit}>
-       <div>
+            <div>
                 <input type="text" value={custToEdit.customerId}
                     disabled />
             </div>

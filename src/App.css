@@ -127,3 +127,13 @@ th, td{
   width: 70%;
   margin-left: 15%;
 }
+.userDetails{
+  background-color: rgb(105, 30, 210);
+  border-style: solid;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 50px;
+  border-radius: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
+}

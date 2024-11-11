@@ -13,9 +13,11 @@ import Userlist from './Users/Userlist'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
+//import 'bootswatch/dist/vapor/bootstrap.min.css'
 
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Login from './Login'
 
 // määritellään dokumentti
 function App() {
@@ -29,6 +31,8 @@ function App() {
   const [showMessage, setShowMessage] = useState(false)
   //Onko viesti positiivinen vai neg
   const [isPositive, setIsPositive] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false) //OLETUKSENA EI OLLA KIRJAUDUTTU
+
   
   // const [productMessage, setProductMessage] = useState("")
   // const [showProductMessage, setShowProductMessage] = useState(false)
@@ -38,6 +42,7 @@ function App() {
 
     <div>
       <Router>
+      
       
       <Navbar bg="dark" variant="dark">
         <Nav className="mr-auto">
@@ -50,6 +55,8 @@ function App() {
 
       <marquee><h1>Northwind Corporation</h1></marquee>
       {showMessage && <Message message={message} isPositive={isPositive}></Message>}
+      {!loggedIn && <Login setMessage={setMessage} setIsPositive={setIsPositive} 
+          setShowMessage={setShowMessage} setLoggedIn={setLoggedIn}></Login>}
       <Routes>
           <Route path="/customers"
           element={<Customerlist setMessage={setMessage} setIsPositive={setIsPositive} 

@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 import ProductService from '../Services/Product'
 import Product from './Product'
 import ProductAdd from './ProductAdd'
-//import CustomerAdd from './CustomerAdd'
-
 
 // määritellään dokumentti
 //MESSAGEN ASETTAMISEEN LIITTYVÄT METODIT ON VÄLITETTY TÄLLÄ KOMPONENTILLE
-function Productlist() {
-
+function Productlist({setIsPositive, setMessage, setShowMessage}) {
+    const [products, setProducts] = useState([])
+    const [showProducts, setShowProducts] = useState(false)
+    const [adding, setAdding] = useState(false)
     //USEEFFECT KUTSUTAAN AUTOMAATTISESTI AINA ALUSSA
     //KAKKOSPARAMETRINA ON TYHJÄ TAULUKKO, JOS SINNE LAITTAA STATEJEN NIMIÄ
     // NIIDEN MUUTOS AIHEUTTAA ENSIMMÄISEN PARAMETRIN KOODIN SUORITUKSEN
@@ -18,13 +18,11 @@ function Productlist() {
             //.then(res => res.json()) //javascript muotoon json muodosta
             ProductService.getAll()
             .then(data => setProducts(data))//ASETETAAN STATEEN NIMELTÄ Products
-    }, [])
+    }, [adding])
 
 
 
-    const [products, setProducts] = useState([])
-    const [showProducts, setShowProducts] = useState(false)
-    const [adding, setAdding] = useState(false)
+    
    
     //HAKUKENTÄN STATE
     //const [search, setSearch] = useState("")
@@ -41,46 +39,16 @@ function Productlist() {
             {showProducts && adding && <ProductAdd setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} setAdding={setAdding} ></ProductAdd>}
             {showProducts && !adding && <button onClick={() => setAdding(true)}>Add New Product</button>}
             {showProducts && products && products.map(p => {
+                
                 return(
-                <Product key={p.productId} product={p}  >
+                <Product key={p.productId} product={p} setMessage={setMessage} setShowMessage={setShowMessage} setIsPositive={setIsPositive}  >
                 
                 </Product> 
                 )
             }
             )
         }
-            {/* {
-                showProducts && products && products.map
-                (
-                    p => 
-                    (
-                        <h3 key={p.productId}></h3>
-                    )
-                )
-            } */}
-            {/* NÄYTTÄÄ CUSTOMERADD BUTTONIN */}
-            {/* {show && adding && <CustomerAdd setMessage ={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} setAdding={setAdding}></CustomerAdd>}
-            {show && !adding && <button onClick={() => setAdding(true)}>Add New Customer</button>}
-            <br></br>
-            {show && !adding && <input type="text" placeholder='Search by Companyname' value={search} onChange={({target}) => setSearch(target.value)}></input>}
-            {show && customers && customers.map(cust => {
-                
-                    const lowerCaseName = cust.companyName.toLowerCase()
-                    if (lowerCaseName.indexOf(search) > -1) {
-                        return(
-                    <Customer key={cust.customerId} customer={cust} 
-                    setMessage={setMessage} setShowMessage={setShowMessage} setIsPositive={setIsPositive}
-                    />
-                )
-            }
-          }
-            )
-        } */}
-                
-                
-
             
-
         </div>
 
     )
