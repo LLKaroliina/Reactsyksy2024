@@ -16,7 +16,7 @@ function Userlist({setIsPositive, setMessage, setShowMessage}) {
     //KAKKOSPARAMETRINA ON TYHJÄ TAULUKKO, JOS SINNE LAITTAA STATEJEN NIMIÄ
     // NIIDEN MUUTOS AIHEUTTAA ENSIMMÄISEN PARAMETRIN KOODIN SUORITUKSEN
     useEffect(() => {
-        fetch("https://localhost:7277/api/users")
+        //fetch("https://localhost:7277/api/users")
             //.then(res => res.json()) //javascript muotoon json muodosta
             UserService.getAll()
             .then(data => setUsers(data))//ASETETAAN STATEEN NIMELTÄ CUSTOMERS

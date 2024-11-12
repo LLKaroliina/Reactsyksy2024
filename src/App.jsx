@@ -33,10 +33,18 @@ function App() {
   const [isPositive, setIsPositive] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false) //OLETUKSENA EI OLLA KIRJAUDUTTU
 
-  
-  // const [productMessage, setProductMessage] = useState("")
-  // const [showProductMessage, setShowProductMessage] = useState(false)
-  // const [isProductPositive, setIsProductPositive] = useState(false)
+//   useEffect(() => {
+//     if (localStorage.getItem("username") != null) {
+//       setLoggedIn(true)
+//     }
+//   },[])
+
+// // Logout metodi
+// const logout = () => {
+//   localStorage.clear()
+//   setLoggedIn(false)
+// }
+
 
   return (
 
@@ -57,6 +65,7 @@ function App() {
       {showMessage && <Message message={message} isPositive={isPositive}></Message>}
       {!loggedIn && <Login setMessage={setMessage} setIsPositive={setIsPositive} 
           setShowMessage={setShowMessage} setLoggedIn={setLoggedIn}></Login>}
+          
       <Routes>
           <Route path="/customers"
           element={<Customerlist setMessage={setMessage} setIsPositive={setIsPositive} 
@@ -74,7 +83,7 @@ function App() {
           element={<Laskuri otsikko={"Laskuri"} />}>
           </Route>
         
-        </Routes>
+        </Routes> 
       </Router>
 
     </div>

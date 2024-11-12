@@ -11,11 +11,17 @@ const [newFirstname, setNewFirstname] = useState('')
 const [newLastname, setNewLastname] = useState('')
 const [newUsername, setNewUsername] = useState('')
 const [newPassword, setNewPassword] = useState('')
+const [newConfirmPassword, setNewConfirmPassword] = useState('')
 const [newAcceslevelId, setNewAcceslevelId] = useState('')
+const [newPasswordMatch, setNewPasswordMatch] = useState(true)
 
 // onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {
       event.preventDefault()
+      if (newPassword !== newConfirmPassword) {
+        setNewPasswordMatch(false)
+        return
+      }
       var newUser = {
         firstName: newFirstname,
         lastName: newLastname,
@@ -49,6 +55,16 @@ const handleSubmit = (event) => {
         setTimeout(() => setShowMessage(false), 10000)
       })
     }
+    // Funktiot, jotka tarkistavat salasanan ja varmistuksen yhteensopivuuden
+  const handlePasswordChange = ({ target }) => {
+    setNewPassword(target.value)
+    setNewPasswordMatch(target.value === newConfirmPassword)
+  }
+
+  const handleConfirmPasswordChange = ({ target }) => {
+    setNewConfirmPassword(target.value)
+    setNewPasswordMatch(newPassword === target.value)
+  }
 
 
   return (
@@ -69,8 +85,17 @@ const handleSubmit = (event) => {
                     onChange={({ target }) => setNewUsername(target.value)} required />
             </div>
             <div>
+              {/* SALASANAN SYÖTTÖ */}
                 <input type="password" value={newPassword} placeholder="Password"
-                    onChange={({ target }) => setNewPassword(target.value)} required />
+                    onChange={handlePasswordChange} required />
+                    <br></br>
+                    {/* SALASANAN VARMISTUS */}
+                    <input type="password" value={newConfirmPassword} placeholder="Confirm password"
+                    onChange={handleConfirmPasswordChange} required />
+                    {/* VIRHEILMOITUS JOS SALASANAT EI TÄSMÄÄ */}
+          {!newPasswordMatch && (
+            <p style={{ color: 'red' }}>Salasanat eivät täsmää</p>
+          )}
             </div>
             <div>
                 <input type="number" min={1} max={10} value={newAcceslevelId} placeholder="AcceslevelId"
