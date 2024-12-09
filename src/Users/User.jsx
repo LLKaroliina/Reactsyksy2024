@@ -20,7 +20,7 @@ function User({user, setMessage, setIsPositive, setShowMessage}) {
                     return
                 }
             //JOS KÄYTTÄJÄ HYVÄKSYI POISTON
-            UserService.remove(u.userID)
+            UserService.remove(u.userId)
             .then(response => {
       
                 //NÄYTETÄÄN MESSAGE

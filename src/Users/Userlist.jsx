@@ -15,17 +15,35 @@ function Userlist({setIsPositive, setMessage, setShowMessage}) {
     //USEEFFECT KUTSUTAAN AUTOMAATTISESTI AINA ALUSSA
     //KAKKOSPARAMETRINA ON TYHJÄ TAULUKKO, JOS SINNE LAITTAA STATEJEN NIMIÄ
     // NIIDEN MUUTOS AIHEUTTAA ENSIMMÄISEN PARAMETRIN KOODIN SUORITUKSEN
+    //TÄSSÄ VAIN TIETTY ACCESLEVELID NÄKEE KÄYTTÄJÄT
     useEffect(() => {
         //fetch("https://localhost:7277/api/users")
             //.then(res => res.json()) //javascript muotoon json muodosta
-            UserService.getAll()
-            .then(data => setUsers(data))//ASETETAAN STATEEN NIMELTÄ CUSTOMERS
-    }, [adding])
+            // UserService.getAll()
+            // .then(data => setUsers(data))//TESTATAAN
+            const accessLevelId = sessionStorage.getItem('acceslevelId');
+
+            if (accessLevelId !== '2') { // Vain admin (esim. accessLevelId: 2)
+                setMessage('Sinulla ei ole oikeuksia nähdä käyttäjätietoja.');
+                setIsPositive(false);
+                setShowMessage(true);
+                setTimeout(() => setShowMessage(false), 5000);
+            } else {
+                UserService.getAll()
+                    .then(data => setUsers(data))
+                    .catch(error => {
+                        setMessage('Käyttäjätietojen haku epäonnistui.');
+                        setIsPositive(false);
+                        setShowMessage(true);
+                        setTimeout(() => setShowMessage(false), 5000);
+                    });
+            }
+    }, [adding, setMessage, setIsPositive, setShowMessage])
 
     // function showAlert(cust){
     //     alert("Contact " + cust.contactName + " by calling " + cust.phone)
     // }
-
+   
     return (
 
         <div> 
@@ -36,10 +54,8 @@ function Userlist({setIsPositive, setMessage, setShowMessage}) {
             {show && !adding && <button onClick={() => setAdding(true)}>Add New User</button>}
             <br></br>
             
-            {show && users && users.map(u => {
-                
-                   
-                        return(
+            {show && users && users.map(u => {       
+                return(
                     <User key={u.userID} user={u} 
                     setMessage={setMessage} setShowMessage={setShowMessage} setIsPositive={setIsPositive}
                     />

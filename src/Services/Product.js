@@ -8,20 +8,22 @@ const getAll = () =>
     }
 const addNew = (object) =>
     {
-        const request = axios.post(baseUrl,object)
+        const request = axios.post(baseUrl,object, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`} })
         return request.then(response => response.data)
     }
     
 const edit = (object) =>
         {
             //const request = axios.delete(`baseUrl/${id}`)
-            const request = axios.put(baseUrl + "/" + object.productId, object)
+            const request = axios.put(baseUrl + "/" + object.productId, object, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`} })
             return request.then(response => response.data)
         }
 const remove = (id) =>
         {
             //const request = axios.delete(`baseUrl/${id}`)
-            const request = axios.delete(baseUrl + "/" + id)
+            
+            const request = axios.delete(baseUrl + "/" + id, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`} })
             return request.then(response => response.data)
+            
         }
 export default {getAll, addNew, edit, remove}

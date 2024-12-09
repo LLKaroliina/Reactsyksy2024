@@ -1,5 +1,5 @@
 import './App.css'
-import React, {useEffect ,useState} from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import UserService from './Services/User'
 import md5 from 'md5'
@@ -12,48 +12,7 @@ const [newUsername, setNewUsername] = useState('')
 const [newPassword, setNewPassword] = useState('')
 
 
-// const Users = () => {
-//   const [users, setUsers] = useState([]);
-//   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     const accessLevelId = localStorage.getItem("accessLevelId");
-
-//     // Estä pääsy, jos käyttöoikeus ei täsmää
-//     if (accessLevelId !== "2") { //  admin
-//         alert("Sinulla ei ole oikeutta nähdä tätä sivua!");
-//         navigate("/"); // Palataan etusivulle
-//     } else {
-//         fetchUsers();
-//     }
-// }, []);
-
-// const fetchUsers = async () => {
-//   // Hae käyttäjätiedot vain, jos pääsy on sallittu
-//   try {
-//       const response = await fetch('/api/users'); // Hae käyttäjät backendistä
-//       const data = await response.json();
-//       setUsers(data);
-//   } catch (error) {
-//       console.error("Käyttäjien haku epäonnistui:", error);
-//   }
-// };
-
-// return (
-  
-//   <div>
-//       <h2>Käyttäjät</h2>
-//       <ul>
-//           {users.map(u => (
-//               // <li key={user.id}>{user.name} - {user.email}</li>
-//               <li key={u.userID} user={u} 
-//                     setMessage={setMessage} setShowMessage={setShowMessage} setIsPositive={setIsPositive}
-//                     />
-//           ))}
-//       </ul>
-//   </div>
-// );
-// };
 
 // onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {

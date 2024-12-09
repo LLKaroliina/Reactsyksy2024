@@ -19,6 +19,7 @@ const [newAcceslevelId, setNewAcceslevelId] = useState(userToEdit.accesLevelId)
 const handleSubmit = (event) => {
       event.preventDefault()
       var newUser = {
+        userId: userToEdit.userId,
         firstName: newFirstname,
         lastName: newLastname,
         userName: newUsername,
