@@ -41,7 +41,6 @@ const handleSubmit = (event) => {
         setTimeout(() => setShowMessage(false), 10000)
         //PIILOTETAAN LISÄYSLOMAKE
         setAdding(false)
-       //alert("Added new customer: " + newCustomer.companyName)
        //alert(response)
        //window.location.reload()
       })
@@ -86,12 +85,16 @@ const handleSubmit = (event) => {
             </div>
             <div>
               {/* SALASANAN SYÖTTÖ */}
-                <input type="password" value={newPassword} placeholder="Password"
-                    onChange={handlePasswordChange} required />
+                {/* <input type="password" value={newPassword} placeholder="Password"
+                    onChange={({target})  => setNewPassword(target.value)} required /> */}
+                     <input type="password" value={newPassword} placeholder="Password"
+                    onChange={handlePasswordChange}  required />
                     <br></br>
                     {/* SALASANAN VARMISTUS */}
+                    {/* <input type="password" value={newConfirmPassword} placeholder="Confirm password"
+                    onChange={({target}) => setNewConfirmPassword(target.value)} required /> */}
                     <input type="password" value={newConfirmPassword} placeholder="Confirm password"
-                    onChange={handleConfirmPasswordChange} required />
+                    onChange={handleConfirmPasswordChange}  required />
                     {/* VIRHEILMOITUS JOS SALASANAT EI TÄSMÄÄ */}
           {!newPasswordMatch && (
             <p style={{ color: 'red' }}>Salasanat eivät täsmää</p>

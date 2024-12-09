@@ -5,7 +5,7 @@ const loginUrl = "https://localhost:7277/api/authentication"
 
 const Login = (object) =>
     {
-        const request = axios.post(loginUrl,object)
+        const request = axios.post(loginUrl, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`} })
         return request.then(response => response.data)
     }
 const getAll = () => 
